@@ -1,0 +1,38 @@
+<p-menubar class="px-4 shadow-sm bg-white">
+
+  <ng-template pTemplate="start">
+    <div class="flex items-center gap-3">
+      <p-button
+        label="AO"
+        severity="primary"
+        styleClass="!rounded-xl !px-3">
+      </p-button>
+
+      <span class="font-bold text-lg text-gray-800">
+        applesOffres
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="end">
+    <div class="flex items-center gap-6 font-medium text-gray-700">
+      <a class="cursor-pointer flex items-center gap-2 hover:text-blue-600 transition">
+        <span class="pi pi-th-large"></span>
+        <span>Dashboard</span>
+      </a>
+      <a class="cursor-pointer flex items-center gap-2 hover:text-blue-600 transition">
+        <span class="pi pi-plus-circle"></span>
+        <span>Nouvel AO</span>
+      </a>
+      <a class="cursor-pointer flex items-center gap-2 hover:text-blue-600 transition">
+        <span class="pi pi-chart-line"></span>
+        <span>Analyses</span>
+      </a>
+      <a class="cursor-pointer flex items-center gap-2 hover:text-blue-600 transition">
+        <span class="pi pi-file-pdf"></span>
+        <span>Letter</span>
+      </a>
+    </div>
+  </ng-template>
+
+</p-menubar>

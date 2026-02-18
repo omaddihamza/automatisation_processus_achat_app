@@ -1,0 +1,54 @@
+<h1 class="text-md p-6">
+  Créez un nouvel appel d'offre et uploadez vos documents
+</h1>
+
+<div class="p-6">
+  <p-card header="Informations générales" class="shadow-md rounded-2xl">
+    <h2 class="text-md mb-4">Décrivez votre appel d'offre</h2>
+
+    <div class="grid grid-cols-1 gap-5">
+
+      <div>
+        <label for="title" class="block mb-2 font-medium">Title</label>
+        <input type="text" pInputText id="title" class="w-full" />
+      </div>
+
+      <div>
+        <label for="description" class="block mb-2 font-medium">Description</label>
+        <textarea rows="4" pTextarea id="description" class="w-full"></textarea>
+      </div>
+
+      <div>
+        <label class="block mb-2 font-medium">Date limit</label>
+        <p-datepicker class="w-full"></p-datepicker>
+      </div>
+
+    </div>
+  </p-card>
+</div>
+
+<div class="p-6">
+  <p-card header="Documents" class="shadow-md rounded-2xl">
+    <h2 class="text-md mb-4">Uploadez le CPS</h2>
+
+    <label class="block mb-2 font-medium">Cahier des Prescriptions Spéciales (CPS)</label>
+
+    <p-toast></p-toast>
+
+    <p-fileupload
+      mode="advanced"
+      name="file"
+      accept=".pdf"
+      [auto]="true"
+      chooseIcon="pi pi-upload"
+      chooseLabel="Upload PDF"
+      [maxFileSize]="5000000">
+    </p-fileupload>
+
+    <div class="flex justify-end mt-4">
+      <p-button label="Créer" severity="success"></p-button>
+    </div>
+
+  </p-card>
+</div>
+

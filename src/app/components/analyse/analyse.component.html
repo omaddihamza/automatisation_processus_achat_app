@@ -1,0 +1,94 @@
+<h1 class="p-6 text-2xl font-bold text-gray-800">Analyse comparative</h1>
+
+<!-- Cartes de statistiques -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 px-6">
+  <p-card styleClass="shadow-sm hover:shadow-md transition-shadow">
+    <div class="flex items-center gap-4 p-2">
+      <div class="bg-green-100 rounded-lg w-14 h-14 flex items-center justify-center">
+        <span class="pi pi-check-circle text-3xl text-green-600"></span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-3xl font-bold text-green-600 leading-none">4</span>
+        <span class="text-sm font-medium text-gray-500">Exigences confirmées</span>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card styleClass="shadow-sm hover:shadow-md transition-shadow">
+    <div class="flex items-center gap-4 p-2">
+      <div class="bg-orange-100 rounded-lg w-14 h-14 flex items-center justify-center">
+        <span class="pi pi-exclamation-triangle text-3xl text-orange-600"></span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-3xl font-bold text-orange-600 leading-none">1</span>
+        <span class="text-sm font-medium text-gray-500">Partiellement conformes</span>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card styleClass="shadow-sm hover:shadow-md transition-shadow">
+    <div class="flex items-center gap-4 p-2">
+      <div class="bg-red-100 rounded-lg w-14 h-14 flex items-center justify-center">
+        <span class="pi pi-times-circle text-3xl text-red-600"></span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-3xl font-bold text-red-600 leading-none">2</span>
+        <span class="text-sm font-medium text-gray-500">Non conformes</span>
+      </div>
+    </div>
+  </p-card>
+</div>
+
+<!-- Classement des fournisseurs -->
+<div class="px-6 pb-6">
+  <p-card header="Classement des fournisseurs (score IA)" styleClass="shadow-sm">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <p-card *ngFor="let fournisseur of fournisseurs"
+              styleClass="shadow-none border hover:shadow-md transition-shadow">
+        <div class="flex items-center justify-between">
+          <span class="font-medium text-gray-700">{{ fournisseur.nom }}</span>
+          <span class="text-lg font-bold px-3 py-1 rounded-full"
+                [ngClass]="{
+                  'bg-green-100 text-green-700': fournisseur.score >= 80,
+                  'bg-orange-100 text-orange-600': fournisseur.score >= 60 && fournisseur.score < 80,
+                  'bg-red-100 text-red-600': fournisseur.score < 60
+                }">
+            {{ fournisseur.score }}
+          </span>
+        </div>
+      </p-card>
+    </div>
+  </p-card>
+</div>
+
+<!-- Analyse des écarts -->
+<div class="px-6 pb-6">
+  <p-card header="Analyse des écarts - TechPro Solutions" styleClass="shadow-sm">
+    <p-table [value]="ecarts" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template #header>
+        <tr>
+          <th class="bg-gray-50">CATÉGORIE</th>
+          <th class="bg-gray-50">EXIGENCE CPS</th>
+          <th class="bg-gray-50">PROPOSITION FOURNISSEUR</th>
+          <th class="bg-gray-50">STATUT</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-ecart>
+        <tr class="hover:bg-gray-50 transition-colors">
+          <td class="font-medium">{{ ecart.categorie }}</td>
+          <td>{{ ecart.exigence }}</td>
+          <td>{{ ecart.proposition }}</td>
+          <td>
+            <p-tag
+              [value]="ecart.statut"
+              [severity]="getSeverity(ecart.statut)"
+              [icon]="getIcon(ecart.statut)"
+              [rounded]="true">
+            </p-tag>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
